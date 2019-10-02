@@ -1,9 +1,12 @@
-HW2 - three ROS nodes:
-Node 1: publishes points (as geometry_msg/Point type) with random x, y, z values on topic /obstacles_detected
+# HW2 - three ROS nodes:
+# Node 1: publishes points (as geometry_msg/Point type) with random x, y, z values on topic /obstacles_detected
 
-Node 2: subscribes to /obstacles_detected, ingests those points, adds a unique identifier to them (your choice of format) and publishes this new data structure as, YOUR MESSAGE TYPE from question 4, on topic /registered_obstacles
+# Node 2: subscribes to /obstacles_detected, ingests those points, adds a unique identifier to them (your choice of format) and #publishes this new data structure as, YOUR MESSAGE TYPE from question 4, on topic /registered_obstacles
 
-Node 3: Subscribes to /registered_obstacles and logs an info-level message to rosout [output to terminal / screen / console] for each one in a human readable format such as: “Detected obstacle <id> at position <x>,<y>,<z>”
+#Node 3: Subscribes to /registered_obstacles and logs an info-level message to rosout [output to terminal / screen / console] for each #one in a human readable format such as: “Detected obstacle <id> at position <x>,<y>,<z>”
+
+# I attempted to scriptify this process but ran into issues enar the end.
+# uncommented commands work, commands for testing are optional
 
 # Assuming docker is installed and the user setup is complete.
 # funbotics is the <container name> , you can choose any container name but wold have to change it for everything below.
