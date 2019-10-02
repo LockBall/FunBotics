@@ -22,9 +22,6 @@ docker run -di --rm --name funbotics ros:kinetic-perception
 # verify container creation for testing
 docker container ps -a
 
-# terminal in existing container for testing
-docker exec -it funbotics bash
-
 # create catkin workspace & -p parent directories
 docker exec funbotics mkdir -p /root/catkin_ws/src
 
@@ -36,11 +33,18 @@ docker exec -i funbotics bash -c "cd ~/catkin_ws/src && git clone https://github
 # docker exec -id funbotics bash -c /bin/bash “source /opt/ros/kinetic/setup.bash”
 # source is not a command. there is no straightforward way to pass the source statement to the docker container
 
+# terminal in existing container
+docker exec -it funbotics bash
+
 source /opt/ros/kinetic/setup.bash
 cd ~/catkin_ws
-     # requires ↑↑
+
+#      requires ↑↑
 catkin_make
 
 source /root/catkin_ws/devel/setup.bash
+
 # requires ↑
 roslaunch funbotics_hw2 3nodes.launch
+
+# ctrl + shift + c   to exit
