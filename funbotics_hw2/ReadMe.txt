@@ -5,7 +5,7 @@
 
 #Node 3: Subscribes to /registered_obstacles and logs an info-level message to rosout [output to terminal / screen / console] for each #one in a human readable format such as: “Detected obstacle <id> at position <x>,<y>,<z>”
 
-# I attempted to scriptify this process but ran into issues enar the end.
+# I attempted to scriptify this process but ran into issues near the end.
 # uncommented commands work, commands for testing are optional
 
 # Assuming docker is installed and the user setup is complete.
@@ -38,12 +38,10 @@ docker exec -it funbotics bash
 
 source /opt/ros/kinetic/setup.bash
 cd ~/catkin_ws
-
 #      requires ↑↑
 catkin_make
 
 source /root/catkin_ws/devel/setup.bash
-
 # requires ↑
 roslaunch funbotics_hw2 3nodes.launch
 
