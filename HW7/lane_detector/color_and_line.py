@@ -5,14 +5,16 @@ import cv2
 def lane_filter(image):
     # The incoming image is BGR format, convert it to HSV
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+
+    # OpenCV uses H: 0-179, S: 0-255, V: 0-255
     
     # Filter for only white pixels. Experiment with values as needed
-    white_filter = cv2.inRange(hsv, (0,50,0), (255,180,255))
+    white_filter = cv2.inRange(hsv, (0,0,0), (180,30,255))
     cv2.imshow("White Filter", white_filter)
     cv2.imwrite("white_filter.png", white_filter)
     
     # Filter for only yellow pixels. Experiment with values as needed
-    yellow_filter = cv2.inRange(hsv, (0,50,0), (140,255,255))
+    yellow_filter = cv2.inRange(hsv, (23,100,193), (35,255,255))
     cv2.imshow("Yellow Filter", yellow_filter)
     cv2.imwrite("yellow_filter.png", yellow_filter)
     
@@ -31,7 +33,7 @@ def lane_filter(image):
     
     # Perform edge detection on the original image. 
     # Experiment with the first two numbers. Aperture size experimentation optional
-    edges = cv2.Canny(image, 0, 300, apertureSize=3)
+    edges = cv2.Canny(image, 0, 375, apertureSize=3)
     cv2.imshow("Edges", edges)
     cv2.imwrite("edges.png", edges)
     
