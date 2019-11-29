@@ -5,15 +5,20 @@ import numpy as np
 
 def get_lines(original_image, filtered_image):
     # do our hough transform on the white image
+
     # resolution: 1 pixel radius, 1 degree rotational
-    r_res = 1
-    theta_res = np.pi/180
-    # threshold: number of intersections to define a line
-    thresh = 1
-    # min_length: minimum number of points to form a line
-    min_length = 1
-    # max_gap: maximum gap between two points to be considered a line
-    max_gap = 20
+    r_res = 1   # default = 1
+    theta_res = np.pi/180   # default = 180
+
+    # threshold: number of intersections to define a line. default = 1
+    thresh = 10
+
+    # min_length: minimum number of points to form a line. default = 1
+    min_length = 10
+
+    # max_gap: maximum gap between two points to be considered a line. default = 20
+    max_gap = 12
+
     lines = cv2.HoughLinesP(filtered_image, r_res, theta_res, thresh, np.empty(1), min_length, max_gap)
     
     output = np.copy(original_image)
@@ -30,12 +35,12 @@ def lane_filter(image):
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     
     # Filter for only white pixels. Experiment with values as needed
-    white_filter = cv2.inRange(hsv, (0,50,0), (255,180,255))
+    white_filter = cv2.inRange(hsv, (0,0,0), (180,30,255))
     cv2.imshow("White Filter", white_filter)
     cv2.imwrite("white_filter.png", white_filter)
     
     # Filter for only yellow pixels. Experiment with values as needed
-    yellow_filter = cv2.inRange(hsv, (0,50,0), (140,255,255))
+    yellow_filter = cv2.inRange(hsv, (23,100,225), (35,255,255))
     cv2.imshow("Yellow Filter", yellow_filter)
     cv2.imwrite("yellow_filter.png", yellow_filter)
     
@@ -54,7 +59,7 @@ def lane_filter(image):
     
     # Perform edge detection on the original image. 
     # Experiment with the first two numbers. Aperture size experimentation optional
-    edges = cv2.Canny(image, 0, 300, apertureSize=3)
+    edges = cv2.Canny(image, 0, 360, apertureSize=3)
     cv2.imshow("Edges", edges)
     cv2.imwrite("edges.png", edges)
     
