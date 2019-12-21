@@ -1,7 +1,0 @@
-<launch>
-
-    <node pkg="funbotics_hw2" name="n3PtRep" type="n3PtRep.py" output="screen"/>
-    <node pkg="funbotics_hw2" name="n2PtId" type="n2PtId.py" output="screen"/>
-    <node pkg="funbotics_hw2" name="n1PtGen" type="n1PtGen.py" output="screen"/>
-
-</launch>
