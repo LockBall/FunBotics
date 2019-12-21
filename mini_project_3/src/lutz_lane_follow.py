@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # Created By Dr. Paul Robinette
-# HW 8 modified by John Lutz on 17 Dec 2019
+# HW 8 modified by John Lutz
 
 # mini project 3
 # should "Contains a node that:
