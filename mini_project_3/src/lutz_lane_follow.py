@@ -119,7 +119,13 @@ def image_rx_callback(msg_compImg): # take in compressed image message from the 
   
     global white_out_pub
     global yellow_out_pub
-  # need to publish white & yellow output images
+
+    #DOES NOT WORK HERE
+    # makes a publisher stored in white_out_pub and yellow_out_pub
+    #white_out_pub = rospy.Publisher('/pub_edges/white', Image, queue_size=1) 
+    #yellow_out_pub = rospy.Publisher('/pub_edges/yellow', Image, queue_size=1)
+
+    # need to publish white & yellow output images
     white_out_pub.publish(image_convert.cv2_to_imgmsg(white_image_holder, "bgr8"))
     yellow_out_pub.publish(image_convert.cv2_to_imgmsg(yellow_image_holder, "bgr8"))
 
@@ -143,8 +149,8 @@ if __name__ == "__main__":
     # this node wants message from this topic and when it receives them it calls the callback function 
     # compressed image topic comes from DB
 
-
-    #makes a publisher stored in white_out_pub and yellow_out_pub
+    # publishes but no video feed
+    # makes a publisher stored in white_out_pub and yellow_out_pub
     white_out_pub = rospy.Publisher('/pub_edges/white' , Image, queue_size=1) 
     yellow_out_pub = rospy.Publisher('/pub_edges/yellow' , Image, queue_size=1)
 
