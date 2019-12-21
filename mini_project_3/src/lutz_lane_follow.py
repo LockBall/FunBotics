@@ -24,7 +24,8 @@ from sensor_msgs.msg import CompressedImage
 
 # convert compressed image to cv2 compatible format
 image_convert = CvBridge() # used in other DB image message processing
-
+white_out_pub = None
+yellow_out_pub = None
 
 def get_lines(original_image, filtered_image):
     # do our hough transform on the white image
@@ -116,6 +117,8 @@ def image_rx_callback(msg_compImg): # take in compressed image message from the 
     
     lane_filter(cv2_image, white_image_holder, yellow_image_holder) # does all of the lane filter stuff. creates white and yellow outputs that live in the scope of that function
   
+    global white_out_pub
+    global yellow_out_pub
   # need to publish white & yellow output images
     white_out_pub.publish(image_convert.cv2_to_imgmsg(white_image_holder, "bgr8"))
     yellow_out_pub.publish(image_convert.cv2_to_imgmsg(yellow_image_holder, "bgr8"))
@@ -140,7 +143,9 @@ if __name__ == "__main__":
     # this node wants message from this topic and when it receives them it calls the callback function 
     # compressed image topic comes from DB
 
-    white_out_pub = rospy.Publisher('/pub_edges/white'  , Image, queue_size=1) #makes a publisher stored in white_out_pub
+
+    #makes a publisher stored in white_out_pub and yellow_out_pub
+    white_out_pub = rospy.Publisher('/pub_edges/white' , Image, queue_size=1) 
     yellow_out_pub = rospy.Publisher('/pub_edges/yellow' , Image, queue_size=1)
 
     rospy.spin() # allows the node to continuously process messages
